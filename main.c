@@ -35,7 +35,7 @@ int main(void) {
 		c = (c+c1+c2+c3)/4;
 		l = (l+l1+l2+l3)/4;
 
-		while(l < 650){
+		while(l < 670){
 			c = centerSensor();
 			l = leftSensor();
 			c1 = centerSensor();

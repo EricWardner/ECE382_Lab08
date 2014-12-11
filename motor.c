@@ -23,8 +23,8 @@ void initMotor(){
 	TA1CTL = ID_3 | TASSEL_2 | MC_1;		// Use 1:8 presclar off MCLK
 	TA1CCR0 = 0x0100;						// set signal period
 
-	TA1CCR1 = 0x0095;
-	TA1CCR2 = 0x0090;
+	TA1CCR1 = 0x0085;
+	TA1CCR2 = 0x0080;
 }
 
 void forward(){

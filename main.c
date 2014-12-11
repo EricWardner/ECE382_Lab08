@@ -5,6 +5,7 @@
 int main(void) {
 
 	unsigned int c, c1, c2, c3;
+	unsigned int l, l1, l2, l3;
 	initMotor();
 
 	IFG1=0; 													// clear interrupt flag1
@@ -30,52 +31,93 @@ int main(void) {
 //		else					P1OUT &= ~BIT6;
 
 		c = centerSensor();
+		l = leftSensor();
 		c1 = centerSensor();
+		l1 = leftSensor();
 		c2 = centerSensor();
+		l2 = leftSensor();
 		c3 = centerSensor();
+		l3 = leftSensor();
 
 		c = (c+c1+c2+c3)/4;
+		l = (l+l1+l2+l3)/4;
 
-
-		while (c > 600){
+		while(l < 600){
 			c = centerSensor();
+			l = leftSensor();
 			c1 = centerSensor();
+			l1 = leftSensor();
 			c2 = centerSensor();
+			l2 = leftSensor();
 			c3 = centerSensor();
+			l3 = leftSensor();
 
 			c = (c+c1+c2+c3)/4;
-			P1OUT |= (BIT0|BIT6);
-			//stop();
-			//__delay_cycles(LEFT45);
+			l = (l+l1+l2+l3)/4;
 			leftTurn();
-			//__delay_cycles(LEFT45);
-			//forward();
+			P1OUT |= (BIT6);
+
+		}
+		while(c > 600){
+			c = centerSensor();
+			l = leftSensor();
+			c1 = centerSensor();
+			l1 = leftSensor();
+			c2 = centerSensor();
+			l2 = leftSensor();
+			c3 = centerSensor();
+			l3 = leftSensor();
+
+			c = (c+c1+c2+c3)/4;
+			l = (l+l1+l2+l3)/4;
+			rightTurn();
+			P1OUT |= (BIT0|BIT6);
+
+
 		}
 		P1OUT &= ~(BIT0|BIT6);
-
 		forward();
 
-		c = centerSensor();
-		c1 = centerSensor();
-		c2 = centerSensor();
-		c3 = centerSensor();
 
-		c = (c+c1+c2+c3)/4;
-
-		while (c > 600){
-			c = centerSensor();
-			c1 = centerSensor();
-			c2 = centerSensor();
-			c3 = centerSensor();
-
-			c = (c+c1+c2+c3)/4;
-			P1OUT |= (BIT0|BIT6);
-			//stop();
-			//__delay_cycles(LEFT45);
-			rightTurn();
-			//__delay_cycles(LEFT45);
-			//forward();
-		}
+//		while (c > 600){
+//			c = centerSensor();
+//			c1 = centerSensor();
+//			c2 = centerSensor();
+//			c3 = centerSensor();
+//
+//			c = (c+c1+c2+c3)/4;
+//			P1OUT |= (BIT0|BIT6);
+//			//stop();
+//			//__delay_cycles(LEFT45);
+//			leftTurn();
+//			//__delay_cycles(LEFT45);
+//			//forward();
+//		}
+//		P1OUT &= ~(BIT0|BIT6);
+//
+//		forward();
+//
+//		c = centerSensor();
+//		c1 = centerSensor();
+//		c2 = centerSensor();
+//		c3 = centerSensor();
+//
+//		c = (c+c1+c2+c3)/4;
+//
+//		while (c > 600){
+//			c = centerSensor();
+//			c1 = centerSensor();
+//			c2 = centerSensor();
+//			c3 = centerSensor();
+//
+//			c = (c+c1+c2+c3)/4;
+//			P1OUT |= (BIT0|BIT6);
+//			//stop();
+//			//__delay_cycles(LEFT45);
+//			rightTurn();
+//			//__delay_cycles(LEFT45);
+//			//forward();
+//		}
 
 	}
 

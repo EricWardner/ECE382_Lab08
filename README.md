@@ -10,7 +10,8 @@ ECE382_Lab08
     - [Design Process](#design-process)
         - [Required Functionality](#required-functionality)
         - [A Functionality](#a-functionality)
-    - [Testing/Debugging](#testing/debugging)
+    - [Testing/Debugging](#testingdebugging)
+    - [Conclusion](#conclusion)
 
 
 Path finding MSP430 IR sensor robot

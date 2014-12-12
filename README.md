@@ -19,3 +19,10 @@ while(1){
     forward();
   }
 }
+```
+
+##Lab
+####Objectives/Overview
+The goal of this lab was to use the sensor and motor libraries created in [Lab 6](https://github.com/EricWardner/ECE382_Lab06) and [Lab 7](https://github.com/EricWardner/ECE382_Lab07) to navigate the IR sensing robot through the following maze.
+
+<center>![alt tag](http://ece382.com/labs/lab8/maze_diagram.png)</center>

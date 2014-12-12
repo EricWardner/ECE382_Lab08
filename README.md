@@ -8,6 +8,9 @@ ECE382_Lab08
         -[Code](#code-set-up)
         -[Robot](#robot-set-up)
     - [Design Process](#design-process)
+        -[Required Functionality](#required-functionality)
+        -[A Functionality](#a-functionality)
+    -[Testing/Debugging](#testing/debugging)
 
 
 Path finding MSP430 IR sensor robot
@@ -17,7 +20,12 @@ The goal of this lab was to use the sensor and motor libraries created in [Lab 6
 The full description of the lab can be found [here](http://ece382.com/labs/lab8/index.html)
 
 
+
+
 ![Alt text](http://ece382.com/labs/lab8/maze_diagram.png)
+
+
+
 
 ##Pre-Lab
 Plan: Follow the left wall!!
@@ -79,6 +87,44 @@ while(true){
 }
 ```
 
+To accomplish this I had to do multiple debugging tests where I put my hands close to the sensor to see what a good value was for the tooCloseToCenterSensor() and tooFarFromLeftWall(). I also had to ensure I was constantly grabbing new sensor readings in the while loops. This is what my algorithm came out to. I replaced the moving average code with a function call.
+
+```C
+forward();
+	while(1){
+		c = movingAverage(centerSensor());
+		l = movingAverage(leftSensor());
+
+		while(l < 670){
+		    c = movingAverage(centerSensor());
+		    l = movingAverage(leftSensor());
+			leftTurn();
+			P1OUT |= (BIT6);
+		}
+		while(c > 600){
+		    c = movingAverage(centerSensor());
+		    l = movingAverage(leftSensor());
+			rightTurn();
+			P1OUT |= (BIT0|BIT6);
+		}
+		P1OUT &= ~(BIT0|BIT6);
+		forward();
+	}
+```
+
+This algorithm also worked for bonus functionality. 
+
+####Testing/Debugging
+######How to
+A big thing I learned here was how to test and debug with the sensors and motor powered on. Apparently you can not have the reset pin hooked up to anything and your MSP430 needs to be hooken up to your robot's ground and the breaker for Vcc had to be taken off when plugged into the usb. I also learned how important it is to use th logic analyzer and a voltage probe to check what readings your board is seeing.
+######My long process
+Testing and debugging was by far the hardest part of the lab. Even after having a working Lab 7 and Lab 6 it was hard to get the motors to work with the sensors. The first difficulty I ran into was I had hooked up one of the sensors to P1.2 which apparently does not work well with the sensors so that had to be changed. Then I was still getting random noise from the motors so I put in some capacitors to help with that which did but not entirely so I finally added a moving average into the code. I also had to slow down my robot greatly. Then it all worked. The last part of my testing was trying to optimize which involved changing my motor's PWM signals.
 
 
+####Conclusion
+In the end after optimization I had my robot going through the maze in about 16 seconds! Here is a nice video of it working!
+
+[![Lab 08 Functionality](http://img.youtube.com/vi/UxiMcg6cxUs/0.jpg)](http://www.youtube.com/watch?v=UxiMcg6cxUs)
+
+If I were to change anythin about my design I would probably edit my motor library to have a turn function that actualy turned the robot in a curve rather than just rotated it in place. I think this would have sped up my time and helped with the sharp turn in bonus functionality. 
 

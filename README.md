@@ -4,13 +4,13 @@ ECE382_Lab08
 - [Introduction](#introduction/objectives)
 - [Pre-lab](#pre-lab)
 - [Lab](#lab)
-    - [Set-up](#set-up)
-        -[Code](#code-set-up)
-        -[Robot](#robot-set-up)
+    - [Set-up](#setup)
+    	- [Code](#code-setup)
+        - [Robot](#robot-setup)
     - [Design Process](#design-process)
-        -[Required Functionality](#required-functionality)
-        -[A Functionality](#a-functionality)
-    -[Testing/Debugging](#testing/debugging)
+        - [Required Functionality](#required-functionality)
+        - [A Functionality](#a-functionality)
+    - [Testing/Debugging](#testing/debugging)
 
 
 Path finding MSP430 IR sensor robot
@@ -47,8 +47,8 @@ while(1){
 
 ##Lab
 
-####Set-up
-######Code set-up
+####Setup
+######Code setup
 I began initialy by cleaning up my motor and sensor library to simplify the code and make it easier to use in this lab.
 In the motor library I took out unnessicary functions and register sets, each individual turn function was changed to only modify the registers it had to modify. An initilaize function was created so it would only have to be run once. 
 
@@ -128,3 +128,5 @@ In the end after optimization I had my robot going through the maze in about 16 
 
 If I were to change anythin about my design I would probably edit my motor library to have a turn function that actualy turned the robot in a curve rather than just rotated it in place. I think this would have sped up my time and helped with the sharp turn in bonus functionality. 
 
+
+Documentation: Dr. Coulston helped me debugg my code and suggested the moving average. Kevin Cooper and Bll Parks gave me ideas on how to optimize my libraries
